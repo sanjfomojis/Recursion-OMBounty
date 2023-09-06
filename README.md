@@ -3,22 +3,23 @@
 
 Recursive inscription templates using HTML, CSS and JavaScript which can be edited to display your own inscriptions on X or ord.io.
 
-1. Replace the inscription IDs with your own inscription IDs in each corresponding template
+1. Replace the inscription IDs with your own inscription IDs in each corresponding template.
 
-   <img width="543" alt="Screenshot 2023-09-06 at 12 20 37 pm" src="https://github.com/sanj770/Recursion-OMBounty/assets/118575190/db952943-0b0a-4dbf-aa44-49df430bdf7b">
+<img width="543" alt="IDs" src="https://github.com/sanj770/Recursion-OMBounty/assets/118575190/5b7c65dd-d13c-4973-a74a-92aab67238aa">
 
 
   Inscription IDs will look like the following: 542efe9ae3dbab7634a68a35a332360ee7db42ab906d2e385bc9c928fd2b0e8bi0
 
-  You can use less or more IDs in the template depending on how many inscriptions you want to display
+  You can use less or more IDs in the template depending on how many inscriptions you want to display.
 
   If you want to see a preview of the inscription before inscribing, you can add https://ordinals.com before /content/ then save an open in browser.
 
-  <img width="384" alt="Screenshot 2023-09-06 at 12 21 27 pm" src="https://github.com/sanj770/Recursion-OMBounty/assets/118575190/5cb44d70-4857-4745-bb3b-cde6038471d6">
+<img width="384" alt="ord" src="https://github.com/sanj770/Recursion-OMBounty/assets/118575190/f0bffad9-6ffb-4308-80f5-74ef8a04b049">
 
-Remember to remove https://ordinals.com again before inscribing
+ 
+Remember to remove https://ordinals.com again before inscribing.
 
-3. Save
+3. Save as .html
 
 4. Inscribe
 
