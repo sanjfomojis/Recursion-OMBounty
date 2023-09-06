@@ -1,0 +1,100 @@
+<head>
+  <style>
+    button {
+      background: transparent;
+      border: none;
+      -webkit-tap-highlight-color: transparent;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      cursor: pointer;
+      font-size: 1em;
+      position: absolute;
+      top: 50%;
+      left: 0px;
+      z-index: 1;
+      transition: opacity 350ms;
+      border-radius: 10px;
+      color: black;
+      opacity: 0;
+      translate: 0 -50%;
+      padding: 0.5rem
+    }
+
+    button:last-of-type {
+      left: auto;
+      right: 0;
+      transform: scaleX(-1);
+    }
+
+    div:hover button {
+      opacity: 1;
+    }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      font-size: clamp(1rem, 5vw, 2rem);
+    }
+
+    img {
+      object-fit: contain;
+      transition: transform 500ms;
+      z-index: 0;
+    }
+
+    div {
+      aspect-ratio: 1 / 1;
+      object-fit: contain;
+      max-height: 100%;
+      overflow: hidden;
+      margin: auto;
+      display: flex;
+      flex-direction: row;
+      position: relative;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <button onclick="setIndex(index-1)">
+      ◀
+    </button>
+    <button onclick="setIndex(index+1)">
+      ◀
+    </button>
+  </div>
+  <script>
+    var index = 0
+    var timer = setTimeout(() => setIndex(index + 1), 5000)
+    const inscriptions = [
+  "807ec134825e7ed71fd4732370ae730973ba160d33575e94ebd2cdc1a0d7ca5di0",
+  "c657dc51a0d24eb30d63bd98f821cfe125572ecd2b11287400fbe2e34871891fi0",
+  "688bc405ecf60c97ae902a0008b559d60286fa06d003339373caf449f188dd30i0",
+  "4a4e07d99ed6a7cea093ade85d049f57114ca167c6df18be8910dc1aaba7d91fi0",
+  "c76774dbbd85e669d8fbb4445903d45b46d5d39d9c0ab80f40903a1f6bb4b650i0",
+  "88d1697c1986e7905c50605c3545b6ac3bc6d3a2f067922b55bfe8b24c526754i0",
+  "8fcf246aca2a9018ef8299c1371f4d70d9a7a07dd2baa7473a64b5dc63a31486i0",
+  "8cf5e1d613e74e88471af7b293ec342c154bc676fcdd28256f2b030c5556d352i0",
+  "6a4d07b83f5029c551a1dfbd03c37a57648fc4e3e07e1e577d7b4e1a17ff16dbi0",
+  "232348e40ae2cc7cd8f3fbf51acaaaf1b0b66f27f1a48d326675b7a8cee20b40i0"
+ ]
+    for (let inscription of inscriptions) {
+      document.querySelector('div').appendChild(document.createElement('img')).src = `/content/${inscription}`
+    }
+
+    function setIndex(i) {
+      index = (i + inscriptions.length) % inscriptions.length
+      for (img of document.querySelectorAll('img')) {
+        img.style.transform = `translateX(-${index * 100}%)`
+      }
+      clearTimeout(timer);
+      timer = setTimeout(() => setIndex(index + 1), 5000)
+    }
+  </script>
+</body>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<style>
+  body {
+    height: 100vh;
+    margin: 0;
+    display: flex
+  }
+
+  img {
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+    image-rendering: pixelated
+  }
+</style>
+<img />
+<script type="module">
+  async function loadImage(id) {
+    return await new Promise(resolver => {
+      let image = new Image()
+      image.crossOrigin = 'anonymous'
+      image.onload = () => resolver(image)
+      image.src = `/content/${id}`
+    })
+  }
+
+  let ids = [
+    "84631836f9a2a6d186a68ee32d5226bbf540ae677c843d1543c24ee521b5e9a0i0", 
+    "b75488c6a79e5489244e162c0e5963ea74c4a892e77c33ca18a08fc9f97807e4i0", 
+    "4e6aa8f39b3d1ec445c5a1ce0992c69213d989ad555c5ab1f20eb2c934af10f9i0",
+    "ca7890b2e7b171e67933c177c7a939005d2a80f4f3e72b8b71ecd39dc4c165f9i0", 
+    "77d3526a107b69bc0fc028eb2961ec818e7e86eec8d6f6618528fdc011908474i0", 
+    "624790aa9ac9b591361a4df3429478c9cd6012cf32cc8ee4436e421341a76c76i0", 
+    "cb99b460e6fab01698299105b1acd20ab75f9c9daf9f815c8927702de3871b1ei0",
+    "9df464ba84ecb70ff985b4aa644df8bce046e90b96243c7c6ed87e6c3576d53ei0",
+    "8cf343fb322b140c53e139db2438379e08044b16d52126edd30d0e12f31dc0dei0",
+    "92b6f8290224fa0bed98566e0e8b5168030aabc25febfd0aa32f530aae66e090i0"
+  ]
+
+  let borderWidth = 6
+  let size = 336
+  let cols1 = Math.ceil(ids.length / 2)
+  let cols2 = Math.floor(ids.length / 2)
+
+  let canvas = new OffscreenCanvas(6 * size, 6 * size * 9 / 16)
+  let ctx = canvas.getContext('2d')
+  ctx.imageSmoothingEnabled = false
+  ctx.fillStyle = '#ffffff'
+  ctx.fillRect(0, 0, canvas.width, canvas.height)
+  ctx.fillStyle = '#000000'
+
+  let background = await loadImage('010342740ea9d312e272b3bf37e19dd915c52ad67a8bee93d6c0d502032302e7i0')
+  ctx.drawImage(background, 0, 0, canvas.width, canvas.height)
+
+  let images = await Promise.all(ids.map(loadImage))
+  images.forEach((image, i) => {
+    let cols = i < ids.length / 2 ? cols1 : cols2
+    let spacing = (canvas.width - size * cols) / (cols + 1)
+    let aspectRatio = image.width / image.height
+    let width = Math.min(size * aspectRatio, size)
+    let height = Math.min(size / aspectRatio, size)
+    let x = (spacing + size/2) + (i % cols1) * (size + spacing) - width / 2
+    let y = 2 * size / 3 - height / 2 + Math.floor(i * 2 / ids.length) * (canvas.height - 4 * size / 3)
+    ctx.fillRect(x - borderWidth, y - borderWidth, width + 2 * borderWidth, height + 2 * borderWidth)
+    ctx.drawImage(image, x, y, width, height)
+  })
+
+  document.querySelector('img').src = URL.createObjectURL(await canvas.convertToBlob())
+</script>

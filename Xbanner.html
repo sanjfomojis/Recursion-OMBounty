@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<style>
+  body {
+    height: 100vh;
+    margin: 0;
+    display: flex
+  }
+  img {
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+    image-rendering: pixelated
+  }
+</style>
+<img/>
+<script type="module">
+  let ids = [
+  "464a9152ae5ce272e008cd39660426da26e778dc1962b773c3db08386e3beb38i0",
+  "61d2a86fd8a976e0748f4eefb664a49a45021a81256feb83e510b552542b8b1ai0",
+  "882b65c4b65d06a429c9ca031011c2b8e954e0eb29f89b84f2aac0ab1b5ea96ei0"]
+  let canvas = new OffscreenCanvas(3000, 1000)
+  let ctx = canvas.getContext('2d')
+  ctx.imageSmoothingEnabled = false
+  ctx.fillStyle = '#ffffffff'
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  (await Promise.all(
+    ids.map(id => new Promise(resolver => {
+      let image = new Image()
+      image.crossOrigin = 'anonymous'
+      image.onload = () => resolver(image)
+      image.src = `/content/${id}`
+    }))
+  )).forEach((image, i) => {
+    let size = Math.min(3000 / ids.length, 1000)
+    let spacing = (3000 - size * ids.length) / (ids.length + 1)
+    let aspectRatio = image.width / image.height
+    let width = Math.min(size * aspectRatio, size)
+    let height = Math.min(size / aspectRatio, size)
+    let x = (spacing + size / 2) + i * (size + spacing) - width / 2
+    let y = 500 - height / 2
+    ctx.drawImage(image, x, y, width, height)
+  })
+  document.querySelector('img').src = URL.createObjectURL(await canvas.convertToBlob())
+</script>

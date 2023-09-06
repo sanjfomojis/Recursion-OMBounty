@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<style>
+  body {
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    background: white;
+  }
+
+  img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    image-rendering: pixelated;
+  }
+</style>
+<img />
+<script type="module">
+  async function loadImage(id) {
+    return await new Promise(resolver => {
+      let image = new Image()
+      image.crossOrigin = 'anonymous'
+      image.onload = () => resolver(image)
+      image.src = `/content/${id}`
+    })
+  }
+
+  let size = 336  
+  let ids = [
+    "d2fce83e82df3e477217b24c9b37e5f2c91c43b17c1619b4aff95ad674d97263i0",
+    "90195ca84bfa69ae346633f1aeaae3bd5e2fcb7f3e79de019bfb67d59b57e645i0",
+    "3d1e88ae1070ccf623a8fd13380b474e64b768388c59119730ea4aa386fdc40di0",
+    "be7519f8c7c40378f7c8bdf577baf63637cc078555133dedec5b46d90f71e83ei0", 
+    "5d0f4bdae9eac9256e2bc2adc07ae10987d18df0ebd9084e82f288f012a33960i0",
+    "295b8fa29678f8fd43d652d7bd510103e3cc2f1fac39aceabbc66f06358a00a0i0",
+    "c3c445c7f9e3f51ff48792ec51cbfdc7607a4b4ca4227a3d672607db3f5b9f45i0", 
+    "b1e05cc72bc634bcf7202558377b92877621531ccc360004d03d7b33b2926a45i0", 
+    "d30848051fdef97f0789c920adeffb9d7f2f36ab3150a20d746f107f57a6c938i0", 
+    "6de9ff0970fa0fe613b1f7d29782a9ebe9f16dc40f63529a14990dbc91f3e643i0"
+  ]
+  let canvas = new OffscreenCanvas(ids.length * size, size)
+  let ctx = canvas.getContext('2d')
+  ctx.imageSmoothingEnabled = false
+  ctx.fillStyle = '#ffffff'
+  ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+  let images = await Promise.all(ids.map(loadImage))
+  images.forEach((image, i) => {
+    let aspectRatio = image.width / image.height
+    let width = Math.min(size * aspectRatio, size)
+    let height = Math.min(size / aspectRatio, size)
+    let x = (size - width) / 2 + i * size
+    let y = (size - height) / 2
+    ctx.drawImage(image, x, y, width, height)
+  })
+  
+  document.querySelector('img').src = URL.createObjectURL(await canvas.convertToBlob())
+</script>
