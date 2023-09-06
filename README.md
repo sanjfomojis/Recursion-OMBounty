@@ -5,11 +5,13 @@ Recursive inscription templates using HTML, CSS and JavaScript which can be edit
 
 First download the template and open in a code editor
 
-If you’re getting the code from an inscription
+If you’re getting the code from an inscription click the </> button in the bottom right hand corner on ord.io to reveal the code
+
+https://www.ord.io/bc1ppd5yvz8dektaf9962he9lqvj64vqw6eep9lh36h7syaga60hnuhsr3v2wy
 
 Copy and paste into text editor or any other code editor 
 
-This uses HTML, CSS and JavaScript to render all the separate inscriptions on a canvas, so the final inscription acts like an image 
+These templates use HTML, CSS and JavaScript to render all the separate inscriptions on a canvas, so the final inscription acts like an image 
 
 You can play around with the code however you like but the only thing you actually need to change are the inscription ID's 
 
