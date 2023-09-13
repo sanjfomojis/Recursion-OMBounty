@@ -52,3 +52,5 @@ Without recursion images of this size and quality wouldn’t be possible
 There’s basically no limit to how many you want to include, this is just the basics, we started simple so anyone can have a play with it but there’s no reason you couldn’t have all 2100 OMB in the same image 
 
    Note: The ord.io inscription won't show up correctly on explorers as it automatically fits to the height of the screen. But when used as a banner on ord.io it will automatically adjust to fit the screen size your viewing it on.
+
+   Credit to @biduoduoduo @itsdonnyok @TheLocalCRYPTO and @SanjFomojis for the OMB’s used 🫡
