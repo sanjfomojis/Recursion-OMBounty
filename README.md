@@ -67,3 +67,5 @@ viewer.html - (works with unlimited inscriptions)
 
 
 Feel free to create your own templates, inscribe them into the OMBounty Wallet and create a PR with the code so I can merge them 🫡
+
+OMBounty Wallet: bc1ppd5yvz8dektaf9962he9lqvj64vqw6eep9lh36h7syaga60hnuhsr3v2wy
