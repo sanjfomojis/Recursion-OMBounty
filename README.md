@@ -53,6 +53,10 @@ There’s basically no limit to how many you want to include, this is just the b
 
    Note: The ord.io inscription won't show up correctly on explorers as it automatically fits to the height of the screen. But when used as a banner on ord.io it will automatically adjust to fit the screen size your viewing it on.
 
+   Credit to @biduoduoduo @itsdonnyok @TheLocalCRYPTO and @SanjFomojis for the OMB’s used!
+
+   # Suggestions
+
 Xbanner.html - (works best with 3 inscriptions but can use any number)
 
 fullset.html - (works best with 8 or 10 inscriptions but can use any number)
@@ -61,6 +65,5 @@ ordio-banner.html - (works best with 7 - 10 inscriptions but can use any number)
 
 viewer.html - (works with unlimited inscriptions)
 
-   Credit to @biduoduoduo @itsdonnyok @TheLocalCRYPTO and @SanjFomojis for the OMB’s used!
 
 Feel free to create your own templates, inscribe them into the OMBounty Wallet and create a PR with the code so I can merge them 🫡
